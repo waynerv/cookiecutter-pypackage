@@ -54,14 +54,6 @@ plugins:
         - {{ cookiecutter.project_slug }}
 extra:
   social:
-    - icon: fontawesome/brands/twitter
-      # replace with your own tweet link below
-      link: https://github.com/waynerv/cookiecutter-pypackage
-      name: Tweet
-    - icon: fontawesome/brands/facebook
-      # replace with your own facebook link below
-      link: https://github.com/waynerv/cookiecutter-pypackage
-      name: Facebook
     - icon: fontawesome/brands/github
       link: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
       name: Github

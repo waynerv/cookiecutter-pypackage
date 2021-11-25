@@ -114,7 +114,6 @@ def test_bake_with_defaults(cookies):
         found_toplevel_files = [f.basename for f in result.project.listdir()]
         assert _DEPENDENCY_FILE in found_toplevel_files
         assert 'python_boilerplate' in found_toplevel_files
-        assert 'setup.cfg' in found_toplevel_files
         assert 'tests' in found_toplevel_files
 
         mkdocs_yml = os.path.join(result._project_dir, "mkdocs.yml")
