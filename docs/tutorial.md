@@ -39,8 +39,8 @@ Go to this generated folder, the project layout should look like:
 ├── .github
 │   ├── ISSUE_TEMPLATE.md
 │   └── workflows
-│       ├── dev.yml
-│       ├── preview.yml
+│       ├── pull-request.yml
+│       ├── push.yml
 │       └── release.yml
 ├── .gitignore
 ├── .pre-commit-config.yaml
@@ -49,12 +49,10 @@ Go to this generated folder, the project layout should look like:
 ├── README.md
 ├── docs
 │   ├── api.md
-│   ├── changelog.md
 │   ├── contributing.md
 │   ├── index.md
 │   ├── installation.md
 │   └── usage.md
-├── makefile
 ├── mkdocs.yml
 ├── my_package
 │   ├── __init__.py
@@ -130,7 +128,6 @@ Then go to repo > settings > secrets, click on 'New repository secret', add the 
 
 - TEST_PYPI_API_TOKEN, see [How to apply TestPyPI token]
 - PYPI_API_TOKEN, see [How to apply pypi token]
-- PERSONAL_TOKEN, see [How to apply personal token]
 
 ## Step 6: Set Up codecov integration
 
@@ -171,7 +168,7 @@ Where `myusername` and `my-package` are adjusted for your username and
 repo name.
 
 You'll need a ssh key to push the repo. You can [Generate] a key or
-[Add] an existing one.
+[Add] an existing one. You also might want to checkout [keychain] to help manage ssh keys.
 
 ???+ Warning
 
@@ -189,22 +186,11 @@ click on actions link, you should find screen like this:
 There should be some workflows running. After they finished, go to [TestPyPI], check if a
 new artifact is published under the name `project_slug`.
 
-## Step 8. Check documentation
+## Check documentation
 
-Documentation will be published and available at *https://{your_github_account}.github.io/{your_repo}* once:
+Documentation will be published and available at *https://{your_github_account}.github.io/{your_repo}*.
 
-1. the commit is tagged, and the tag name is started with 'v' (lower case)
-2. build/testing executed by GitHub CI passed
-
-If you'd like to see what it's look like now, you could run the following command:
-
-```
-poetry run mkdocs serve
-```
-
-This will run the builtin development server for you to preview.
-
-## Step 9. Make official release
+## Step 8. Make official release
 
   After done with your phased development in a feature branch, make a pull request, following
   instructions at [release checklist](pypi_release_checklist.md), trigger first official release and check
@@ -221,5 +207,5 @@ This will run the builtin development server for you to preview.
 [Add]: https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
 [How to apply testpypi token]: https://test.pypi.org/manage/account/
 [How to apply pypi token]: https://pypi.org/manage/account/
-[How to apply personal token]: https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token
 [install codecov app]: https://github.com/apps/codecov
+[keychain]: https://www.funtoo.org/Keychain

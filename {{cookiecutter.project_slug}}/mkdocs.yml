@@ -9,7 +9,6 @@ nav:
   - Usage: usage.md
   - Modules: api.md
   - Contributing: contributing.md
-  - Changelog: changelog.md
 theme:
   name: material
   language: en

@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: stage & preview workflow
+name: build and docs
 
 # Controls when the action will run.
 on:
@@ -44,14 +44,17 @@ jobs:
         with:
           fail_ci_if_error: true
           files: coverage.xml
-        if: ${{ matrix.python-version == 3.8 && matrix.os == ubuntu-latest}}
+        if: ${{ matrix.python-version == 3.8 && matrix.os == 'ubuntu-latest'}}
 
   posttest:
     runs-on: ubuntu-latest
-    needs: tests
+    needs: test
     steps:
       - uses: actions/checkout@v2
-
+        with:
+          # This is necessary so that we have the tags for dunamai-action@v1
+          fetch-depth: 0
+      
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -60,7 +63,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install poetry tox tox-gh-actions dunamai
+          pip install poetry tox tox-gh-actions
 
       - name: build documentation
         run: |
@@ -70,14 +73,14 @@ jobs:
       - name: publish documentation
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
   
       - name: Assign version number
         uses: mtkennerly/dunamai-action@v1
         with:
           env-var: MY_VERSION
-          command: dunamia from git
+          command: dunamai from git
           args: --no-metadata --style semver
       - run: echo $MY_VERSION
 
