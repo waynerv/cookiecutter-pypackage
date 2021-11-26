@@ -1,3 +1,6 @@
+# Files that should be VC:
+# - poetry.lock (https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control)
+
 # macOS
 .DS_Store
 .AppleDouble

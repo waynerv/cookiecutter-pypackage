@@ -39,8 +39,8 @@ Go to this generated folder, the project layout should look like:
 ├── .github
 │   ├── ISSUE_TEMPLATE.md
 │   └── workflows
-│       ├── dev.yml
-│       ├── preview.yml
+│       ├── pull-request.yml
+│       ├── push.yml
 │       └── release.yml
 ├── .gitignore
 ├── .pre-commit-config.yaml
@@ -49,12 +49,10 @@ Go to this generated folder, the project layout should look like:
 ├── README.md
 ├── docs
 │   ├── api.md
-│   ├── changelog.md
 │   ├── contributing.md
 │   ├── index.md
 │   ├── installation.md
 │   └── usage.md
-├── makefile
 ├── mkdocs.yml
 ├── my_package
 │   ├── __init__.py
