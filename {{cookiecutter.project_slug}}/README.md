@@ -38,4 +38,4 @@ Checkout the [section of the documentation on usage](https://{{ cookiecutter.git
 
 ## Contributing 
 
-We encourage contributions! Please have a look at the [section of the documentation on contributing](https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.project_slug }}/contributing/)
+We encourage contributions and credit is always given! Please have a look at the [section of the documentation on contributing](https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.project_slug }}/contributing/) or ``CONTRIBUTING.md`` file.
