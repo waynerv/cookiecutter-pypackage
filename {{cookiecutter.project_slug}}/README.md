@@ -19,10 +19,23 @@
 * Free software: {{ cookiecutter.open_source_license }}
 {% endif %}
 
-## Features
+## Installation
+{% if is_open_source %}
 
-* TODO
+Using a python environment running python >= 3.8:
 
-## Credits
+```shell
+$ pip install {{ cookiecutter.project_slug }}
+```
+{% else %}
 
-This package was created with [Cookiecutter](https://github.com/audreyr/cookiecutter) and the [waynerv/cookiecutter-pypackage](https://github.com/waynerv/cookiecutter-pypackage) project template.
+Refer to the [section of the documentation on contributing](https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.project_slug }}/contributing/)
+{% endif %}
+
+## Usage
+
+Checkout the [section of the documentation on usage](https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.project_slug }}/usage/)
+
+## Contributing 
+
+We encourage contributions and credit is always given! Please have a look at the [section of the documentation on contributing](https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.project_slug }}/contributing/) or ``CONTRIBUTING.md`` file.

@@ -12,9 +12,6 @@ $ pip install {{ cookiecutter.project_slug }}
 This is the preferred method to install {{ cookiecutter.project_name
 }}, as it will always install the most recent stable release.
 
-If you don't have [pip][] installed, this [Python installation guide][]
-can guide you through the process.
-
 ## From source
 
 The source for {{ cookiecutter.project_name }} can be downloaded from

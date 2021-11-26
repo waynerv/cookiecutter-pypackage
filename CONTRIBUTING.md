@@ -9,7 +9,7 @@ You can contribute in many ways:
 
 ### Report Bugs
 
-Report bugs at https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/issues.
+Report bugs at https://github.com/hainesm6-learning/cookiecutter-pypackage/issues.
 
 If you are reporting a bug, please include:
 
@@ -29,13 +29,13 @@ and "help wanted" is open to whoever wants to implement it.
 
 ### Write Documentation
 
-{{ cookiecutter.project_name }} could always use more documentation, whether as part of the
-official {{ cookiecutter.project_name }} docs, in docstrings, or even on the web in blog posts,
+This package could always use more documentation, whether as part of the
+official docs, in docstrings, or even on the web in blog posts,
 articles, and such.
 
 ### Submit Feedback
 
-The best way to send feedback is to file an issue at https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/issues.
+The best way to send feedback is to file an issue at https://github.com/hainesm6-learning/cookiecutter-pypackage/issues.
 
 If you are proposing a feature:
 
@@ -46,20 +46,20 @@ If you are proposing a feature:
 
 ## Get Started!
 
-Ready to contribute? Here's how to set up `{{ cookiecutter.project_slug }}` for local development.
+Ready to contribute? Here's how to set up cookiecutter-pypackage for local development.
 
-1. Fork the `{{ cookiecutter.project_slug }}` repo on GitHub.
+1. Fork the repo on GitHub.
 2. Clone your fork locally
 
     ```
-    $ git clone git@github.com:your_name_here/{{ cookiecutter.project_slug }}.git
+    $ git clone git@github.com:your_name_here/cookiecutter-pypackage.git
     ```
 
 3. Ensure [poetry](https://python-poetry.org/docs/) is installed.
 4. Install dependencies and start your virtualenv:
 
     ```
-    $ poetry install -E test -E doc -E dev
+    $ poetry install -E dev
     ```
 
 5. Create a branch for local development:
@@ -95,21 +95,6 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring, and add the
    feature to the list in README.md.
-3. The pull request should work for Python 3.8 and 3.9. Check
-   https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/actions
+3. The pull request should work for Python 3.6, 3.7, 3.8 and 3.9. Check
+   https://github.com/hainesm6-learning/cookiecutter-pypackage/actions
    and make sure that the tests pass for all supported Python versions.
-
-## Tips
-
-```
-$ poetry run pytest tests/test_{{ cookiecutter.pkg_name }}.py
-```
-
-To run a subset of tests.
-
-
-## Deploying
-
-ToDo
-
-GitHub Actions will then deploy to PyPI if tests pass.

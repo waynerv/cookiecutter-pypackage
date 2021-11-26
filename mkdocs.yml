@@ -1,14 +1,13 @@
 site_name: Cookiecutter Pypackage
-site_url: https://www.waynerv.com/cookiecutter-pypackage
-repo_url: https://github.com/waynerv/cookiecutter-pypackage
-repo_name: waynerv/cookiecutter-pypackage
+site_url: https://www.hainesm6-learning.com/cookiecutter-pypackage
+repo_url: https://github.com/hainesm6-learning/cookiecutter-pypackage
+repo_name: hainesm6-learning/cookiecutter-pypackage
 nav:
   - Introduction: index.md
   - Tutorial: tutorial.md
   - Console script: console_script_setup.md
   - Release checklist: pypi_release_checklist.md
   - FAQ: faq.md
-  - History: history.md
 
 theme:
   name: material
@@ -40,10 +39,3 @@ plugins:
   - include-markdown
   - search:
       lang: en
-extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/waynerv
-      name: Github
-    - icon: material/email
-      link: "mailto:ampedee@gmail.com"

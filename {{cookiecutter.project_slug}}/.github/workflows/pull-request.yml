@@ -1,11 +1,11 @@
 # This is a basic workflow to help you get started with Actions
 
-name: stage & preview workflow
+name: dev workflow
 
 # Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
-  push:
+  pull_request:
     branches: [ master, main ]
 
   # Allows you to run this workflow manually from the Actions tab
@@ -13,14 +13,18 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  publish_dev_build:
-    runs-on: ubuntu-latest
-
+  # This workflow contains a single job called "test"
+  test:
+    # The type of runner that the job will run on
     strategy:
       matrix:
-        python-versions: [ 3.8 ]
+        python-versions: [3.8, 3.9]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
 
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
@@ -31,20 +35,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install poetry tox tox-gh-actions
 
+      # Note tox will format, lint and build according to the setup.cfg file.    
       - name: test with tox
         run:
           tox
 
-      - name: Build wheels and source tarball
-        run: |
-          poetry version $(poetry version --short)-dev.$GITHUB_RUN_NUMBER
-          poetry version --short
-          poetry build
-
-      - name: publish to Test PyPI
-        uses: pypa/gh-action-pypi-publish@master
-        with:
-          user: __token__
-          password: ${{ secrets.TEST_PYPI_API_TOKEN}}
-          repository_url: https://test.pypi.org/legacy/
-          skip_existing: true
+      - name: list files
+        run: ls -l .

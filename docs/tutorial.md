@@ -25,7 +25,7 @@ Now it's time to generate your Python package.
 Run the following command and feed with answers, If you don’t know what to enter, stick with the defaults:
 
 ```bash
-cookiecutter https://github.com/waynerv/cookiecutter-pypackage.git
+cookiecutter https://github.com/hainesm6-learning/cookiecutter-pypackage.git
 ```
 
 Finally, a new folder will be created under current folder, the name is the answer you
@@ -35,7 +35,6 @@ Go to this generated folder, the project layout should look like:
 
 ```
 .
-├── .bumpversion.cfg
 ├── .editorconfig
 ├── .github
 │   ├── ISSUE_TEMPLATE.md
@@ -45,7 +44,6 @@ Go to this generated folder, the project layout should look like:
 │       └── release.yml
 ├── .gitignore
 ├── .pre-commit-config.yaml
-├── CHANGELOG.md
 ├── CONTRIBUTING.md
 ├── LICENSE
 ├── README.md
@@ -77,12 +75,7 @@ Also be noticed that there's `pyproject.toml` in this folder. This is the main c
 ## Step 3: Install Poetry
 
 In this step we will install Poetry if you are not using it, since the whole project is managed by it.
-
-```bash
-pip install poetry
-```
-
-In addition, Poetry provides a [custom installer](https://python-poetry.org/docs/#installation) that will install
+Poetry provides a [custom installer](https://python-poetry.org/docs/#installation) that will install
 poetry isolated from the rest of your system by vendorizing its dependencies.
 This is the recommended way of installing poetry.
 
@@ -99,7 +92,7 @@ poetry run tox
 ```
 
 Poetry will create its own virtualenv isolated from your system and install the dependencies in it.
-We installed extra dependency need by developer with `-E {group}` options, such as documentation build tools, lint,
+We installed extra dependencies needed by the developer with `-E {group}` options, such as documentation build tools, lint,
 formatting and test tools etc.
 
 We also launch a smoke test here by running `poetry run tox`. This will run `tox` within created virtual environment,
