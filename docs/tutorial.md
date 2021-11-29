@@ -39,8 +39,8 @@ Go to this generated folder, the project layout should look like:
 ├── .github
 │   ├── ISSUE_TEMPLATE.md
 │   └── workflows
-│       ├── dev.yml
-│       ├── preview.yml
+│       ├── pull-request.yml
+│       ├── push.yml
 │       └── release.yml
 ├── .gitignore
 ├── .pre-commit-config.yaml
@@ -49,12 +49,10 @@ Go to this generated folder, the project layout should look like:
 ├── README.md
 ├── docs
 │   ├── api.md
-│   ├── changelog.md
 │   ├── contributing.md
 │   ├── index.md
 │   ├── installation.md
 │   └── usage.md
-├── makefile
 ├── mkdocs.yml
 ├── my_package
 │   ├── __init__.py
@@ -68,9 +66,9 @@ Go to this generated folder, the project layout should look like:
 
 ```
 
-Here the project_slug is `my-package`, when you generate yours, it could be other name.
+Here the project_slug is `my-package`, when you generate yours, it could be another name.
 
-Also be noticed that there's `pyproject.toml` in this folder. This is the main configuration file of our project.
+Also notice there's `pyproject.toml` in this folder. This is the main configuration file of our project.
 
 ## Step 3: Install Poetry
 
@@ -81,7 +79,7 @@ This is the recommended way of installing poetry.
 
 ## Step 4: Install Dev Requirements
 
-You should still be in the folder named as `project_slug`, which containing the
+You should still be in the folder named as `project_slug`, which contains the
  `pyproject.toml` file.
 
 Install the new project's local development requirements with `poetry install`:
@@ -95,7 +93,7 @@ Poetry will create its own virtualenv isolated from your system and install the 
 We installed extra dependencies needed by the developer with `-E {group}` options, such as documentation build tools, lint,
 formatting and test tools etc.
 
-We also launch a smoke test here by running `poetry run tox`. This will run `tox` within created virtual environment,
+We also launch a smoke test here by running `poetry run tox`. This will run `tox` within a created virtual environment,
 give you a test report and lint report. You should see no errors except some lint warnings.
 
 You can also activate the virtual environment manually with `poetry shell`, this will create a new shell.
@@ -130,7 +128,6 @@ Then go to repo > settings > secrets, click on 'New repository secret', add the 
 
 - TEST_PYPI_API_TOKEN, see [How to apply TestPyPI token]
 - PYPI_API_TOKEN, see [How to apply pypi token]
-- PERSONAL_TOKEN, see [How to apply personal token]
 
 ## Step 6: Set Up codecov integration
 
@@ -171,7 +168,7 @@ Where `myusername` and `my-package` are adjusted for your username and
 repo name.
 
 You'll need a ssh key to push the repo. You can [Generate] a key or
-[Add] an existing one.
+[Add] an existing one. You also might want to checkout [keychain] to help manage ssh keys.
 
 ???+ Warning
 
@@ -181,34 +178,19 @@ You'll need a ssh key to push the repo. You can [Generate] a key or
 
 ### Check result
 
-After pushing your code to GitHub, goto GitHub web page, navigate to your repo, then
-click on actions link, you should find screen like this:
+After pushing your code to GitHub, go to the GitHub web page, navigate to your repo, then
+click on the actions link. You should find something like this:
 
 ![](http://images.jieyu.ai/images/202104/20210419170304.png)
 
 There should be some workflows running. After they finished, go to [TestPyPI], check if a
 new artifact is published under the name `project_slug`.
 
-## Step 8. Check documentation
+You should also check the documentation which will be published and available at *https://{your_github_account}.github.io/{your_repo}*
 
-Documentation will be published and available at *https://{your_github_account}.github.io/{your_repo}* once:
+## Step 8. Make official release
 
-1. the commit is tagged, and the tag name is started with 'v' (lower case)
-2. build/testing executed by GitHub CI passed
-
-If you'd like to see what it's look like now, you could run the following command:
-
-```
-poetry run mkdocs serve
-```
-
-This will run the builtin development server for you to preview.
-
-## Step 9. Make official release
-
-  After done with your phased development in a feature branch, make a pull request, following
-  instructions at [release checklist](pypi_release_checklist.md), trigger first official release and check
-  result at [PyPI].
+  After your done with phased development and have merged all changes into the main branch, create and publish a release (see [Managing GitHub releases]). This will trigger the first official release on [PyPI]!
 
 
 [Edit this file]: https://github.com/waynerv/cookiecutter-pypackage/blob/master/docs/tutorial.md
@@ -221,5 +203,6 @@ This will run the builtin development server for you to preview.
 [Add]: https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
 [How to apply testpypi token]: https://test.pypi.org/manage/account/
 [How to apply pypi token]: https://pypi.org/manage/account/
-[How to apply personal token]: https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token
 [install codecov app]: https://github.com/apps/codecov
+[keychain]: https://www.funtoo.org/Keychain
+[Managing GitHub releases]: https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository

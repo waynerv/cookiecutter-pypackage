@@ -1,4 +1,4 @@
-name: release & publish workflow
+name: publish
 
 # Controls when the action will run.
 on:
@@ -18,7 +18,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with:
-          # This is necessary so that we have the tags.
+          # This is necessary so that we have the tags for dunamai-action@v1
           fetch-depth: 0
 
       - name: Set up Python

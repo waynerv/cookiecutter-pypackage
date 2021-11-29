@@ -8,7 +8,8 @@
 [tool]
 [tool.poetry]
 name = "{{ cookiecutter.project_slug }}"
-version = "see GitHub Releases"
+# version may differ from pypi given GitHub workflows. See releases at homepage.
+version = "{{ cookiecutter.version }}"
 homepage = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
 description = "{{ cookiecutter.project_short_description }}."
 authors = ["{{ cookiecutter.full_name.replace('\"', '\\\"') }} <{{ cookiecutter.email }}>"]
@@ -92,7 +93,7 @@ doc = [
 [tool.black]
 line-length = 120
 skip-string-normalization = true
-target-version = ['py36', 'py37', 'py38']
+target-version = ['py38', 'py39']
 include = '\.pyi?$'
 exclude = '''
 /(

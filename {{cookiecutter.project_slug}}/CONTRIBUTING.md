@@ -51,20 +51,20 @@ Ready to contribute? Here's how to set up `{{ cookiecutter.project_slug }}` for 
 1. Fork the `{{ cookiecutter.project_slug }}` repo on GitHub.
 2. Clone your fork locally
 
-    ```
+    ```shell
     $ git clone git@github.com:your_name_here/{{ cookiecutter.project_slug }}.git
     ```
 
 3. Ensure [poetry](https://python-poetry.org/docs/) is installed.
 4. Install dependencies and start your virtualenv:
 
-    ```
+    ```shell
     $ poetry install -E test -E doc -E dev
     ```
 
 5. Create a branch for local development:
 
-    ```
+    ```shell
     $ git checkout -b name-of-your-bugfix-or-feature
     ```
 
@@ -73,13 +73,13 @@ Ready to contribute? Here's how to set up `{{ cookiecutter.project_slug }}` for 
 6. When you're done making changes, check that your changes pass the
    tests, including testing other Python versions, with tox:
 
-    ```
+    ```shell
     $ poetry run tox
     ```
 
 7. Commit your changes and push your branch to GitHub:
 
-    ```
+    ```shell
     $ git add .
     $ git commit -m "Your detailed description of your changes."
     $ git push origin name-of-your-bugfix-or-feature
@@ -93,23 +93,26 @@ Before you submit a pull request, check that it meets these guidelines:
 
 1. The pull request should include tests.
 2. If the pull request adds functionality, the docs should be updated. Put
-   your new functionality into a function with a docstring, and add the
-   feature to the list in README.md.
+   your new functionality into a function with a docstring, and describe how to use the
+   feature in the [usage.md](/docs/usage.md) file.
 3. The pull request should work for Python 3.8 and 3.9. Check
    https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/actions
    and make sure that the tests pass for all supported Python versions.
 
 ## Tips
 
-```
+```shell
 $ poetry run pytest tests/test_{{ cookiecutter.pkg_name }}.py
 ```
 
 To run a subset of tests.
 
-
 ## Deploying
 
-ToDo
+New versions are deployed via [GitHub Actions](https://docs.github.com/en/actions/learn-github-actions):
 
-GitHub Actions will then deploy to PyPI if tests pass.
+* A push to the master branch will trigger a release on [TestPyPI](https://test.pypi.org/project/{{ cookiecutter.project_slug }}/).
+* Publishing a new release on GitHub will trigger a release on [PyPI](https://pypi.org/project/{{ cookiecutter.project_slug }}/).
+When making a release please note the following:
+  * notwells follows [semantic versioning](https://semver.org/).
+  * To document new releases please enable [auto-generate release notes](https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes) when creating a release.
