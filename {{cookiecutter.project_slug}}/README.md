@@ -17,16 +17,18 @@
 * GitHub: <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}>
 * PyPI: <https://pypi.org/project/{{ cookiecutter.project_slug }}/>
 * Free software: {{ cookiecutter.open_source_license }}
+
 {% endif -%}
 
 ## Installation
 {%- if is_open_source %}
 
-Using a python environment running python >= 3.8:
+Using a python environment running python >= 3.7:
 
 ```shell
 $ pip install {{ cookiecutter.project_slug }}
 ```
+
 {% else %}
 Refer to the [section of the documentation on contributing](https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.project_slug }}/contributing/)
 {% endif -%}

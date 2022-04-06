@@ -50,7 +50,7 @@ plugins:
       lang: en
   - mkdocstrings:
       watch:
-        - {{ cookiecutter.project_slug }}
+        - {{ cookiecutter.pkg_name }}
 extra:
   social:
     - icon: fontawesome/brands/github

@@ -183,7 +183,7 @@ click on the actions link. You should find something like this:
 
 ![](http://images.jieyu.ai/images/202104/20210419170304.png)
 
-There should be some workflows running. After they finished, go to [TestPyPI], check if a
+There should be some workflows running. After they've finished, go to [TestPyPI], check if a
 new artifact is published under the name `project_slug`.
 
 You should also check the documentation which will be published and available at *https://{your_github_account}.github.io/{your_repo}*
