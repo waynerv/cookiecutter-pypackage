@@ -22,3 +22,6 @@ indent_style = tab
 
 [*.{diff,patch}]
 trim_trailing_whitespace = false
+
+[*.{yml,yaml}]
+indent_size = 2

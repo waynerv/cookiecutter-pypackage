@@ -43,30 +43,3 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr htmlcov/
 	rm -fr .pytest_cache
 	rm -fr testtemp/
-
-.PHONY: format
-format:
-	isort $(sources) tests
-	black $(sources) tests
-
-.PHONY: lint
-lint:
-	flake8 $(sources) tests
-	{%- if cookiecutter.use_mypy == 'y' %}
-	mypy $(sources) tests
-	{%- endif %}
-
-.PHONY: test
-test: format lint unittest
-
-.PHONY: unittest
-unittest:
-	pytest
-
-.PHONY: coverage
-coverage:
-	pytest --cov=$(sources) --cov-branch --cov-report=term-missing tests
-
-.PHONY: pre-commit
-pre-commit:
-	pre-commit run --all-files

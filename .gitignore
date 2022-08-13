@@ -76,6 +76,14 @@ coverage.xml
 
 # Django stuff:
 *.log
+local_settings.py
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
 
 # Sphinx documentation
 docs/_build/
@@ -97,10 +105,59 @@ output/
 python_boilerplate/
 cookiecutter-pypackage-env/
 
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+/notebooks/*
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# celery beat schedule file
+celerybeat-schedule
+
+# SageMath parsed files
+*.sage.py
+
+# dotenv
+.env
+.envrc
+
+# virtualenv
+.venv
+venv/
+ENV/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+
 # IDE settings
 .vscode/
+.idea/
 
-# mkdocs
-site/
+# Test stuff
+/testdata/*
+/data/*
+/testtemp/*
 
-venv/
+# Dev playgroud
+/devplayground/*
+
+# Auto generated pip files
+/requirements*.txt

@@ -6,9 +6,9 @@ name: dev CI workflow
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [main]
   pull_request:
-    branches: [ master ]
+    branches: [main]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -20,7 +20,7 @@ jobs:
     # The type of runner that the job will run on
     strategy:
       matrix:
-        python-versions: [3.6, 3.7, 3.8, 3.9]
+        python-versions: [3.10]
         os: [ubuntu-20.04, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
 
@@ -39,6 +39,3 @@ jobs:
 
       - name: test with tox
         run: tox
-
-      - name: list files
-        run: ls -l .

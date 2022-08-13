@@ -1,8 +1,5 @@
 # Tutorial
 
-??? Note
-    Did you find this article confusing? [Edit this file] and pull a request!
-
 To start with, you will need [GitHub], [PyPI], [TestPyPI] and [Codecov] account. If
 you don't have one, please follow the links to apply one before you get started on this
 tutorial.
@@ -12,11 +9,7 @@ some tutorials at the top of the page at [GitHub Help].
 
 ## Step 1: Install Cookiecutter
 
-Install cookiecutter:
-
-``` bash
-pip install cookiecutter
-```
+Install [cookiecutter](https://cookiecutter.readthedocs.io/en/stable/installation.html):
 
 ## Step 2: Generate Your Package
 
@@ -25,7 +18,7 @@ Now it's time to generate your Python package.
 Run the following command and feed with answers, If you don’t know what to enter, stick with the defaults:
 
 ```bash
-cookiecutter https://github.com/waynerv/cookiecutter-pypackage.git
+cookiecutter https://github.com/mishamsk/cookiecutter-pypackage.git
 ```
 
 Finally, a new folder will be created under current folder, the name is the answer you
@@ -72,7 +65,7 @@ Go to this generated folder, the project layout should look like:
 
 Here the project_slug is `my-package`, when you generate yours, it could be other name.
 
-Also be noticed that there's `pyproject.toml` in this folder. This is the main configuration file of our project.
+Also notice thatthe `pyproject.toml` in this folder. This is the main configuration file of our project.
 
 ## Step 3: Install Poetry
 
@@ -94,37 +87,16 @@ You should still be in the folder named as `project_slug`, which containing the
 Install the new project's local development requirements with `poetry install`:
 
 ``` bash
-poetry install -E doc -E dev -E test
+poetry install
 poetry run tox
 ```
 
 Poetry will create its own virtualenv isolated from your system and install the dependencies in it.
-We installed extra dependency need by developer with `-E {group}` options, such as documentation build tools, lint,
-formatting and test tools etc.
 
 We also launch a smoke test here by running `poetry run tox`. This will run `tox` within created virtual environment,
 give you a test report and lint report. You should see no errors except some lint warnings.
 
 You can also activate the virtual environment manually with `poetry shell`, this will create a new shell.
-
-??? Tips
-
-    Extra dependencies are grouped into three groups, doc, dev and test for better
-    granularity. When you ship the package, dependencies in group doc, dev and test
-    might not be shipped.
-
-    As the developer, you will need install all the dependencies.
-
-??? Tips
-
-    if you found erros like the following during tox run:
-    ```
-    ERROR: InterpreterNotFound: python3.9
-    ```
-    don't be panic, this is just because python3.x is not found on your machine. If you
-    decide to support that version of Python in your package, please install it on your
-    machine. Otherwise, remove it from tox.ini and pyproject.toml (search python3.x then
-    remove it).
 
 ## Step 5: Create a GitHub Repo
 
@@ -146,7 +118,7 @@ Then go to repo > settings > secrets, click on 'New repository secret', add the 
     If you have already setup codecov integration and configured access for all your
     repositories, you can skip this step.
 
-In your browser, visit [install codecov app], you'll be landed at this page:
+In your browser, visit [install codecov app], you'll land at this page:
 
 ![](http://images.jieyu.ai/images/202104/20210419175222.png)
 
@@ -218,7 +190,7 @@ This will run the builtin development server for you to preview.
   result at [PyPI].
 
 
-[Edit this file]: https://github.com/waynerv/cookiecutter-pypackage/blob/master/docs/tutorial.md
+[Edit this file]: https://github.com/mishamsk/cookiecutter-pypackage/blob/master/docs/tutorial.md
 [Codecov]: https://codecov.io/
 [PYPI]: https://pypi.org
 [GitHub]: https://github.com/

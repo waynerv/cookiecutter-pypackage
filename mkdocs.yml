@@ -1,7 +1,7 @@
 site_name: Cookiecutter Pypackage
-site_url: https://www.waynerv.com/cookiecutter-pypackage
-repo_url: https://github.com/waynerv/cookiecutter-pypackage
-repo_name: waynerv/cookiecutter-pypackage
+site_url: https://mishamsk.github.io/cookiecutter-pypackage
+repo_url: https://github.com/mishamsk/cookiecutter-pypackage
+repo_name: mishamsk/cookiecutter-pypackage
 nav:
   - Introduction: index.md
   - Tutorial: tutorial.md
@@ -15,9 +15,9 @@ theme:
   language: en
   #logo: assets/logo.png
   palette:
-      scheme: preference
-      primary: indigo
-      accent: indigo
+    scheme: preference
+    primary: indigo
+    accent: indigo
   features:
     - navigation.indexes
     - navigation.instant
@@ -43,7 +43,7 @@ plugins:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/waynerv
+      link: https://github.com/mishamsk
       name: Github
     - icon: material/email
-      link: "mailto:ampedee@gmail.com"
+      link: "mailto:mishamsk@gmail.com"
