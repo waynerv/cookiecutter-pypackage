@@ -186,9 +186,12 @@ def test_bake_with_console_script_cli(cookies: Cookies):
     project_path, project_slug, project_dir = project_info(result)
     module_path = os.path.join(project_dir, "cli.py")
 
-    out = execute([sys.executable, module_path], project_dir)
+    out = execute(
+        [sys.executable, module_path, "main"],
+        project_dir,
+    )
     assert project_slug in out
 
-    out = execute([sys.executable, module_path, "--help"], project_dir)
+    out = execute([sys.executable, module_path, "-h"], project_dir)
 
-    assert "Show this message and exit." in out
+    assert "Usage: cli.py" in out

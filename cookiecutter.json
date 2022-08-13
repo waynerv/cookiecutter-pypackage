@@ -36,5 +36,6 @@
         "dev",
         "no",
         "all"
-    ]
+    ],
+    "newest_deps": "n"
 }

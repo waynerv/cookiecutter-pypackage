@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import os
 import subprocess
-import sys
 
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 
@@ -51,65 +50,78 @@ def poetry_add_dependencies(use_click: bool, use_mypy: bool):
     # print("Adding dependencies to pyproject.toml")
 
     if use_click:
-        execute("poetry", "add", "click")
+        execute("poetry", "add", "--lock", "click", cwd=PROJECT_DIRECTORY)
 
     if use_mypy:
-        execute("poetry", "add", "--dev", "mypy")
+        execute("poetry", "add", "--lock", "--dev", "mypy", cwd=PROJECT_DIRECTORY)
 
-    execute("poetry", "add", "--dev", "pytest")
-    execute("poetry", "add", "--dev", "black")
-    execute("poetry", "add", "--dev", "flake8")
-    execute("poetry", "add", "--dev", "isort")
-    execute("poetry", "add", "--dev", "pytest-cov")
-    execute("poetry", "add", "--dev", "coverag")
-    execute("poetry", "add", "--dev", "bump2version")
-    execute("poetry", "add", "--dev", "pre-commit")
-    execute("poetry", "add", "--dev", "twine")
-    execute("poetry", "add", "--dev", "tox")
+    execute("poetry", "add", "--lock", "--dev", "pytest", cwd=PROJECT_DIRECTORY)
+    execute("poetry", "add", "--lock", "--dev", "black", cwd=PROJECT_DIRECTORY)
+    execute("poetry", "add", "--lock", "--dev", "flake8", cwd=PROJECT_DIRECTORY)
+    execute("poetry", "add", "--lock", "--dev", "isort", cwd=PROJECT_DIRECTORY)
+    execute("poetry", "add", "--lock", "--dev", "pytest-cov", cwd=PROJECT_DIRECTORY)
+    execute("poetry", "add", "--lock", "--dev", "coverag", cwd=PROJECT_DIRECTORY)
+    execute("poetry", "add", "--lock", "--dev", "bump2version", cwd=PROJECT_DIRECTORY)
+    execute("poetry", "add", "--lock", "--dev", "pre-commit", cwd=PROJECT_DIRECTORY)
+    execute("poetry", "add", "--lock", "--dev", "twine", cwd=PROJECT_DIRECTORY)
+    execute("poetry", "add", "--lock", "--dev", "tox", cwd=PROJECT_DIRECTORY)
 
-    execute("poetry", "add", "--dev", "--optional", "mkdocs")
-    execute("poetry", "add", "--dev", "--optional", "mkdocs-include-markdown-plugin")
-    execute("poetry", "add", "--dev", "--optional", "mkdocs-material")
-    execute("poetry", "add", "--dev", "--optional", "mkdocstrings")
-    execute("poetry", "add", "--dev", "--optional", "mkdocs-material-extensions")
-    execute("poetry", "add", "--dev", "--optional", "mkdocs-autoref")
+    execute("poetry", "add", "--lock", "--optional", "mkdocs", cwd=PROJECT_DIRECTORY)
+    execute(
+        "poetry",
+        "add",
+        "--dev",
+        "--optional",
+        "mkdocs-include-markdown-plugin",
+        cwd=PROJECT_DIRECTORY,
+    )
+    execute("poetry", "add", "--lock", "--optional", "mkdocs-material", cwd=PROJECT_DIRECTORY)
+    execute("poetry", "add", "--lock", "--optional", "mkdocstrings", cwd=PROJECT_DIRECTORY)
+    execute(
+        "poetry",
+        "add",
+        "--lock",
+        "--dev",
+        "--optional",
+        "mkdocs-material-extensions",
+        cwd=PROJECT_DIRECTORY,
+    )
+    execute("poetry", "add", "--lock", "--optional", "mkdocs-autoref", cwd=PROJECT_DIRECTORY)
 
 
 def install_pre_commit_hooks():
-    execute("poetry", "install")
-    execute(sys.executable, "-m", "pre_commit", "install")
+    execute("poetry", "install", cwd=PROJECT_DIRECTORY)
+    execute("poetry", "run", "pre_commit", "install", cwd=PROJECT_DIRECTORY)
 
 
 if __name__ == "__main__":
     use_click = "{{ cookiecutter.command_line_interface|lower }}" == "click"
     use_mypy = "{{ cookiecutter.use_mypy }}" == "y"
     cicd = "{{ cookiecutter.cicd }}"
+    add_deps = "{{ cookiecutter.newest_deps }}" == "y"
 
     if not use_click:
         cli_file = os.path.join("{{ cookiecutter.pkg_name }}", "cli.py")
         remove_file(cli_file)
 
     if not cicd == "all":
-        preview_file = os.path.join(
-            "{{ cookiecutter.pkg_name }}", ".github", "workflows", "preview.yml"
-        )
-        release_file = os.path.join(
-            "{{ cookiecutter.pkg_name }}", ".github", "workflows", "release.yml"
-        )
+        preview_file = os.path.join(".github", "workflows", "preview.yml")
+        release_file = os.path.join(".github", "workflows", "release.yml")
         remove_file(preview_file)
         remove_file(release_file)
 
     if not cicd == "dev":
-        dev_file = os.path.join("{{ cookiecutter.pkg_name }}", ".github", "workflows", "dev.yml")
+        dev_file = os.path.join(".github", "workflows", "dev.yml")
         remove_file(dev_file)
 
     if "Not open source" == "{{ cookiecutter.open_source_license }}":
         remove_file("LICENSE")
 
-    try:
-        poetry_add_dependencies(use_click, use_mypy)
-    except Exception as e:
-        print(e)
+    if add_deps:
+        try:
+            poetry_add_dependencies(use_click, use_mypy)
+        except Exception as e:
+            print(e)
 
     try:
         init_git()

@@ -2,6 +2,7 @@
 
 {% if cookiecutter.command_line_interface|lower == 'click' -%}
 import logging
+from logging.config import dictConfig
 import os
 import sys
 
@@ -105,7 +106,7 @@ def cli(
     verbose: bool,
 ) -> None:
     """Main entry point"""
-    logging.dictConfig(
+    dictConfig(
         get_log_config(
             "{{cookiecutter.pkg_name}}",
             log_level=log_level if not verbose else "DEBUG",
@@ -114,7 +115,7 @@ def cli(
     )
     logger.debug("Init cli successful")
 
-@click.command()
+@cli.command()
 def main():
     """Main entrypoint."""
     click.echo("{{ cookiecutter.project_slug }}")
