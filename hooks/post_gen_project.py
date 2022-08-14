@@ -110,7 +110,7 @@ if __name__ == "__main__":
         remove_file(preview_file)
         remove_file(release_file)
 
-    if not cicd == "dev":
+    if not (cicd == "dev" or cicd == "all"):
         dev_file = os.path.join(".github", "workflows", "dev.yml")
         remove_file(dev_file)
 

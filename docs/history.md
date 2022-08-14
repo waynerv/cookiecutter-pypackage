@@ -1,5 +1,11 @@
 # History
 
+## v0.1.1
+* Bug: dev cicd workflow dropped with "all" option
+* New: add watch to mkdocs
+* Bug: contributing template missing link to github issues
+* Removed: old social links from original repo
+
 ## v0.1.0
 First release, based on https://github.com/waynerv/cookiecutter-pypackage with the following updates:
 
