@@ -1,6 +1,6 @@
 # Tutorial
 
-To start with, you will need [GitHub], [PyPI], [TestPyPI] and [Codecov] account. If
+To start with, you will need [GitHub], [PyPI] and [TestPyPI] accounts. If
 you don't have one, please follow the links to apply one before you get started on this
 tutorial.
 
@@ -9,7 +9,7 @@ some tutorials at the top of the page at [GitHub Help].
 
 ## Step 1: Install Cookiecutter
 
-Install [cookiecutter](https://cookiecutter.readthedocs.io/en/stable/installation.html):
+Install [cookiecutter](https://cookiecutter.readthedocs.io/en/stable/installation.html)
 
 ## Step 2: Generate Your Package
 
@@ -21,7 +21,7 @@ Run the following command and feed with answers, If you don’t know what to ent
 cookiecutter https://github.com/mishamsk/cookiecutter-pypackage.git
 ```
 
-Finally, a new folder will be created under current folder, the name is the answer you
+A new folder will be created under current folder, the name is the answer you
 provided to `project_slug`.
 
 Go to this generated folder, the project layout should look like:
@@ -49,7 +49,7 @@ Go to this generated folder, the project layout should look like:
 │   ├── index.md
 │   ├── installation.md
 │   └── usage.md
-├── makefile
+├── Makefile
 ├── mkdocs.yml
 ├── my_package
 │   ├── __init__.py
@@ -57,6 +57,7 @@ Go to this generated folder, the project layout should look like:
 │   └── my_package.py
 ├── pyproject.toml
 ├── setup.cfg
+├── tox.ini
 └── tests
     ├── __init__.py
     └── test_my_package.py
@@ -65,19 +66,11 @@ Go to this generated folder, the project layout should look like:
 
 Here the project_slug is `my-package`, when you generate yours, it could be other name.
 
-Also notice thatthe `pyproject.toml` in this folder. This is the main configuration file of our project.
+Also notice that the `pyproject.toml` in this folder. This is the main configuration file of our project.
 
 ## Step 3: Install Poetry
 
-In this step we will install Poetry if you are not using it, since the whole project is managed by it.
-
-```bash
-pip install poetry
-```
-
-In addition, Poetry provides a [custom installer](https://python-poetry.org/docs/#installation) that will install
-poetry isolated from the rest of your system by vendorizing its dependencies.
-This is the recommended way of installing poetry.
+Install Poetry if you are not using it ([official docs](https://python-poetry.org/docs/master/#installing-with-pipx)). The whole project is managed by it.
 
 ## Step 4: Install Dev Requirements
 
@@ -93,8 +86,7 @@ poetry run tox
 
 Poetry will create its own virtualenv isolated from your system and install the dependencies in it.
 
-We also launch a smoke test here by running `poetry run tox`. This will run `tox` within created virtual environment,
-give you a test report and lint report. You should see no errors except some lint warnings.
+We also launch a smoke test here by running `poetry run tox`. This will run `tox` within created virtual environment, give you a test report and lint report. You should see no errors except some lint warnings.
 
 You can also activate the virtual environment manually with `poetry shell`, this will create a new shell.
 
@@ -109,28 +101,8 @@ Then go to repo > settings > secrets, click on 'New repository secret', add the 
 
 - TEST_PYPI_API_TOKEN, see [How to apply TestPyPI token]
 - PYPI_API_TOKEN, see [How to apply pypi token]
-- PERSONAL_TOKEN, see [How to apply personal token]
 
-## Step 6: Set Up codecov integration
-
-???+ Tips
-
-    If you have already setup codecov integration and configured access for all your
-    repositories, you can skip this step.
-
-In your browser, visit [install codecov app], you'll land at this page:
-
-![](http://images.jieyu.ai/images/202104/20210419175222.png)
-
-Click on the green `install` button at top right, choose `all repositories` then click
-on `install` button, following directions until all set.
-
-If the repo you created is a private repo, you need to set the following additional secrets,
-which is not required for public repos:
-
-- CODECOV_TOKEN, see [Codecov GitHub Action - Usage](https://github.com/marketplace/actions/codecov?version=v1.5.2#usage)
-
-## Step 7: Upload code to GitHub
+## Step 6: Upload code to GitHub
 
 Back to your develop environment, find the folder named after the `project_slug`.
 Move into this folder, and then setup git to use your GitHub repo and upload the
@@ -168,7 +140,7 @@ click on actions link, you should find screen like this:
 There should be some workflows running. After they finished, go to [TestPyPI], check if a
 new artifact is published under the name `project_slug`.
 
-## Step 8. Check documentation
+## Step 7. Check documentation
 
 Documentation will be published and available at *https://{your_github_account}.github.io/{your_repo}* once:
 
@@ -183,7 +155,7 @@ poetry run mkdocs serve
 
 This will run the builtin development server for you to preview.
 
-## Step 9. Make official release
+## Step 8. Make official release
 
   After done with your phased development in a feature branch, make a pull request, following
   instructions at [release checklist](pypi_release_checklist.md), trigger first official release and check
@@ -191,7 +163,6 @@ This will run the builtin development server for you to preview.
 
 
 [Edit this file]: https://github.com/mishamsk/cookiecutter-pypackage/blob/master/docs/tutorial.md
-[Codecov]: https://codecov.io/
 [PYPI]: https://pypi.org
 [GitHub]: https://github.com/
 [TestPyPI]: https://test.pypi.org/
@@ -201,4 +172,3 @@ This will run the builtin development server for you to preview.
 [How to apply testpypi token]: https://test.pypi.org/manage/account/
 [How to apply pypi token]: https://pypi.org/manage/account/
 [How to apply personal token]: https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token
-[install codecov app]: https://github.com/apps/codecov

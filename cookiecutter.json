@@ -6,7 +6,11 @@
     "full_name": "Author Name",
     "email": "author@email.com",
     "github_username": "github_username",
-    "version": "0.1.0a",
+    "version_schema": [
+        "0.1.0",
+        "0.1.0[a/b/rc]"
+    ],
+    "version": "{{ '0.1.0a' if cookiecutter.version_schema == '0.1.0[a/b/rc]' else '0.1.0' }}",
     "command_line_interface": [
         "click",
         "No command-line interface"

@@ -16,7 +16,6 @@ This tool will create Python project with the following features:
 * Makefile template for typical operations
 * [Mkdocs](https://www.mkdocs.org): Writing your docs in markdown style
 * Testing with [Pytest](https://pytest.org) (unittest is still supported out of the box)
-* Code coverage report and endorsed by [Codecov](https://codecov.io)
 * [Tox](https://tox.readthedocs.io): Test your code against environment matrix, lint and artifact check
 * Format with [Black](https://github.com/psf/black) and [Isort](https://github.com/PyCQA/isort)
 * Lint code with [Flake8](https://flake8.pycqa.org)
@@ -89,7 +88,6 @@ command-line interface"\]
 
 ## CI/CD setup
 Except the settings above, you'll also need configure gitub repsitory secrets at page repo > settings > secrtes, and add the following secrets:
-- PERSONAL_TOKEN (required for publishing document to git pages)
 - TEST_PYPI_API_TOKEN (required for publishing dev release to testpypi)
 - PYPI_API_TOKEN (required for publish )
 

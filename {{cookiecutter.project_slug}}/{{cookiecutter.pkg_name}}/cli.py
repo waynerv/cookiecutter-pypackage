@@ -55,8 +55,8 @@ def get_log_config(name: str, log_level: str = "INFO", log_file: str | None = No
         "handlers": handlers,
         "loggers": {
             name: log_conf,
+            # You can add other loggers like so:
             # "asyncio": log_conf,
-            # "root": log_conf,
             # "uvicorn": {"level": "INFO", "handlers": ["console", "handler"]},
         },
     }
