@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - tox won't install all dependencies every time
 - tox runs pre-commit for linting & formatting to make sure this is unified
+- updated and improved better CICD workflows
 - Simplified tutorial
 
 ### Fixed
