@@ -66,27 +66,27 @@ def poetry_add_dependencies(use_click: bool, use_mypy: bool):
     execute("poetry", "add", "--lock", "--dev", "twine", cwd=PROJECT_DIRECTORY)
     execute("poetry", "add", "--lock", "--dev", "tox", cwd=PROJECT_DIRECTORY)
 
-    execute("poetry", "add", "--lock", "--optional", "mkdocs", cwd=PROJECT_DIRECTORY)
+    execute("poetry", "add", "--lock", "--dev", "mkdocs", cwd=PROJECT_DIRECTORY)
     execute(
         "poetry",
         "add",
         "--dev",
-        "--optional",
+        "--dev",
         "mkdocs-include-markdown-plugin",
         cwd=PROJECT_DIRECTORY,
     )
-    execute("poetry", "add", "--lock", "--optional", "mkdocs-material", cwd=PROJECT_DIRECTORY)
-    execute("poetry", "add", "--lock", "--optional", "mkdocstrings", cwd=PROJECT_DIRECTORY)
+    execute("poetry", "add", "--lock", "--dev", "mkdocs-material", cwd=PROJECT_DIRECTORY)
+    execute("poetry", "add", "--lock", "--dev", "mkdocstrings", cwd=PROJECT_DIRECTORY)
     execute(
         "poetry",
         "add",
         "--lock",
         "--dev",
-        "--optional",
+        "--dev",
         "mkdocs-material-extensions",
         cwd=PROJECT_DIRECTORY,
     )
-    execute("poetry", "add", "--lock", "--optional", "mkdocs-autoref", cwd=PROJECT_DIRECTORY)
+    execute("poetry", "add", "--lock", "--dev", "mkdocs-autoref", cwd=PROJECT_DIRECTORY)
 
 
 def install_pre_commit_hooks():
