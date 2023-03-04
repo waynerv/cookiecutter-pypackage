@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: stage & preview workflow
+name: Stage & preview workflow
 
 # Controls when the action will run.
 on:
@@ -18,11 +18,11 @@ jobs:
 
     strategy:
       matrix:
-        python-versions: [ 3.8 ]
+        python-versions: [ "3.8" ]
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-versions }}
 
