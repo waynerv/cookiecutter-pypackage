@@ -1,0 +1,27 @@
+---
+name: sweater
+channels:
+  - conda-forge
+dependencies:
+  - python >=3.8
+{%- if cookiecutter.command_line_interface|lower == 'click' %}
+  - click >=8.0.1
+{%- endif %}
+  # Testing
+  - black
+  - isort
+{%- if cookiecutter.use_mypy == 'y' %}
+  - mypy
+{%- endif %}
+  - flake8
+  - flake8-docstrings
+  - pytest-cov
+  # Development
+  - tox
+  - pre-commit
+  - virtualenv
+  - pip
+  - twine
+  - toml
+  - bump2version
+  - pip
