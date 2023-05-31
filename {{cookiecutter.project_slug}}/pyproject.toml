@@ -36,8 +36,8 @@ packages = [
 python = ">=3.10,<3.12"
 {%- if cookiecutter.command_line_interface|lower == 'click' %}
 click = "^8.1.3"
+rich = "^13.4.1"
 {%- endif %}
-openpyxl = "^3.0.10"
 pydantic = "^1.10.4"
 
 [tool.poetry.group.dev.dependencies]
