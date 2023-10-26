@@ -41,7 +41,7 @@ pip install -U cookiecutter
 Generate a Python package project:
 
 ```
-cookiecutter https://github.com/waynerv/cookiecutter-pypackage.git
+cookiecutter https://github.com/luiscberrocal/cookiecutter-pypackage.git
 ```
 
 Then follow **[Tutorial](docs/tutorial.md)** to finish other configurations.
