@@ -25,5 +25,5 @@
 
 ## Credits
 
-This package was created with [Cookiecutter](https://github.com/audreyr/cookiecutter), [waynerv/cookiecutter-pypackage](https://github.com/waynerv/cookiecutter-pypackage) 
+This package was created with [Cookiecutter](https://github.com/audreyr/cookiecutter), [waynerv/cookiecutter-pypackage](https://github.com/waynerv/cookiecutter-pypackage)
 and [luiscberrocal/cookiecutter-pypackage](https://github.com/luiscberrocal/cookiecutter-pypackage) project template.
