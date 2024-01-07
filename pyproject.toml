@@ -6,8 +6,8 @@ description = "Cookiecutter template for a Python package"
 license = "BSD-3-Clause"
 authors = ["Xie Wei <ampedee@gmail.com>", "Luis C. Berrocal <luis.berrocal.1942@gmail.com>"]
 readme = "README.md"
-repository = "https://github.com/waynerv/cookiecutter-pypackage"
-documentation = "https://waynerv.github.io/cookiecutter-pypackage/"
+repository = "https://github.com/luiscberrocal/cookiecutter-pypackage"
+documentation = "https://luiscberrocal.github.io/cookiecutter-pypackage/"
 keywords = ['cookiecutter', 'template', 'package']
 
 include = [
