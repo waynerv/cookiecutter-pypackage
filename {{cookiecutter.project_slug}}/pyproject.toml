@@ -63,7 +63,7 @@ freezegun = "^1.2.2"
 
 [tool.poetry.group.doc.dependencies]
 mkdocs = "^1.5.3"
-mkdocs-include-markdown-plugin = "^6.03"
+mkdocs-include-markdown-plugin = "^6.0.3"
 mkdocs-material = "^9.4.6"
 mkdocs-autorefs = "^0.5.0"
 mkdocstrings = {extras = ["python"], version = "^0.24.0"}
