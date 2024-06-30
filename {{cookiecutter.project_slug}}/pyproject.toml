@@ -37,29 +37,32 @@ packages = [
 python = ">=3.10,<3.13"
 {%- if cookiecutter.command_line_interface|lower == 'click' %}
 click = "^8.1.7"
-rich = "^13.6.0"
+rich = "^13.7.1"
 {%- endif %}
-pydantic = "^2.5.3"
+pydantic = "^2.7.4"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^7.4.3"
+{%- if cookiecutter.use_ruff == 'y' %}
+ruff = "^0.5.0"
+{%- else %}
 black = "^23.10.1"
 isort = "^5.12.0"
+flake8 = "^6.1.0"
+flake8-docstrings = "^1.7.0"
+{%- endif %}
+
 {%- if cookiecutter.use_mypy == 'y' %}
 mypy = "^1.6.1"
 {%- endif %}
-flake8 = "^6.1.0"
-flake8-docstrings = "^1.7.0"
+pytest = "^7.4.4"
+pytest-cov = "^4.1.0"
+pytest-mock = "^3.14.0"
 factory-boy = "^3.3.0"
-pytz = "^2023.3"
+pytz = "^2024.1"
 bump2version = "^1.0.1"
 twine = "^4.0.2"
 coverage = "^7.3.2"
-tox = "^4.11.3"
-pytest-cov = "^4.1.0"
-pytest-mock = "^3.12.0"
-freezegun = "^1.2.2"
-
+tox = "^4.15.1"
 
 [tool.poetry.group.doc.dependencies]
 mkdocs = "^1.5.3"
@@ -73,6 +76,8 @@ mkdocstrings = {extras = ["python"], version = "^0.24.0"}
 {{ cookiecutter.project_slug }} = '{{ cookiecutter.pkg_name }}.cli:main'
 {% endif -%}
 
+
+{%- if cookiecutter.use_ruff != 'y' %}
 [tool.black]
 line-length = 120
 skip-string-normalization = true
@@ -103,7 +108,76 @@ line_length = 120
 skip_gitignore = true
 # you can skip files as below
 #skip_glob = docs/conf.py
-
+{%- endif %}
 [build-system]
 requires = ["poetry-core>=1.2.0"]
 build-backend = "poetry.core.masonry.api"
+
+
+{%- if cookiecutter.use_ruff == 'y' %}
+[tool.ruff]
+line-length = 120
+exclude = [
+    ".git",
+    ".mypy_cache",
+    ".ruff_cache",
+    ".tox",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "node_modules",
+    "site-packages",
+    "**/migrations/*.py",
+]
+[tool.ruff.lint]
+
+# https://docs.astral.sh/ruff/rules/
+
+select = [
+    "ANN", # flake8-annotations
+    "ARG", # flake8-unused-arguments
+    "B", # flake8-bugbear
+    "BLE", # flake8-blind-except
+    "D", # pydocstyle
+    "E", # pycodestyle
+    "ERA", # eradicate
+    "F", # Pyflakes
+    "FIX", # flake8-fixme
+    "G", # flake8-logging-format
+    "I", # isort
+    "LOG", # flake8-logging
+    "N", # pep-8 naming
+    "PL", # Pylint
+    "PYI", # flake8-pyi
+    "RET", # flake8-return
+    "RSE", # flake8-raise
+    "SIM", # flake8-simplify
+    "SLF", # flake8-self
+    "T20", # flake8-print
+    "UP", # pyupgrade
+]
+ignore = [
+    "ANN101", # Missing type annotation for self in method
+    "D100"
+]
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+[tool.ruff.lint.per-file-ignores]
+# Ignore `E402` (import violations) in all `__init__.py` files, and in `path/to/file.py`.
+"__init__.py" = ["E402", "D"]
+# Ignore `D` rules everywhere except for the `src/` directory.
+"{{cookiecutter.project_slug}}/tests/**.py" =  ["D", "ANN", "ERA", "PLR", "ARG", "SLF"]
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
+{%- endif %}
