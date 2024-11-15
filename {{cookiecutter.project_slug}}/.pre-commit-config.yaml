@@ -18,7 +18,7 @@ repos:
     hooks:
       - id: forbid-crlf
       - id: remove-crlf
-{%- if cookiecutter.ruff == 'y'%}
+{%- if cookiecutter.use_ruff == 'y'%}
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.7.3
     hooks:
