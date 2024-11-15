@@ -1,17 +1,33 @@
 repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-json
+      - id: check-toml
+      - id: check-xml
+      - id: check-yaml
+      - id: debug-statements
+      - id: check-builtin-literals
+      - id: check-case-conflict
+      - id: check-docstring-first
+      - id: detect-private-key
   - repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.1.9
     hooks:
       - id: forbid-crlf
       - id: remove-crlf
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.4.0
+{%- if cookiecutter.ruff == 'y'%}
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.7.3
     hooks:
-      - id: trailing-whitespace
-      - id: end-of-file-fixer
-      - id: check-merge-conflict
-      - id: check-yaml
-        args: [ --unsafe ]
+      # Linter
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+      # Formatter
+      - id: ruff-format
+{%- else %}
   - repo: https://github.com/pre-commit/mirrors-isort
     rev: v5.8.0
     hooks:
@@ -27,6 +43,7 @@ repos:
     hooks:
       - id: flake8
         additional_dependencies: [ flake8-typing-imports==1.10.0 ]
+{%- endif %}
   {%- if cookiecutter.use_mypy == 'y' %}
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v0.901
