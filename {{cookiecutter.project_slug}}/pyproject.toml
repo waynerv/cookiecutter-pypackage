@@ -43,7 +43,7 @@ pydantic = "^2.9.2"
 
 [tool.poetry.group.dev.dependencies]
 {%- if cookiecutter.use_ruff == 'y' %}
-ruff = "^0.6.8"
+ruff = "^0.7.3"
 {%- else %}
 black = "^23.10.1"
 isort = "^5.12.0"
