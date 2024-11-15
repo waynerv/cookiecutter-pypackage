@@ -1,7 +1,7 @@
 site_name: Cookiecutter Pypackage
 site_url: https://www.waynerv.com/cookiecutter-pypackage
-repo_url: https://github.com/waynerv/cookiecutter-pypackage
-repo_name: waynerv/cookiecutter-pypackage
+repo_url: https://github.com/luiscberrocal/cookiecutter-pypackage
+repo_name: luiscberrocal/cookiecutter-pypackage
 nav:
   - Introduction: index.md
   - Tutorial: tutorial.md
@@ -43,7 +43,7 @@ plugins:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/waynerv
+      link: https://github.com/luiscberrocal
       name: Github
     - icon: material/email
       link: "mailto:ampedee@gmail.com"

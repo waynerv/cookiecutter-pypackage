@@ -24,10 +24,9 @@ classifiers=[
 {%- endif %}
     'Natural Language :: English',
     'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.6',
-    'Programming Language :: Python :: 3.7',
-    'Programming Language :: Python :: 3.8',
-    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
 ]
 packages = [
     { include = "{{ cookiecutter.pkg_name }}" },
@@ -35,67 +34,54 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.6.2,<4.0"
+python = ">=3.10,<3.13"
 {%- if cookiecutter.command_line_interface|lower == 'click' %}
-click = "8.0.1"
+click = "^8.1.7"
+rich = "^13.9.1"
+{%- endif %}
+pydantic = "^2.9.2"
+
+[tool.poetry.group.dev.dependencies]
+{%- if cookiecutter.use_ruff == 'y' %}
+ruff = "^0.7.3"
+{%- else %}
+black = "^23.10.1"
+isort = "^5.12.0"
+flake8 = "^6.1.0"
+flake8-docstrings = "^1.7.0"
 {%- endif %}
 
-black  = { version = "^21.5b2", optional = true}
-isort  = { version = "^5.8.0", optional = true}
-flake8  = { version = "^3.9.2", optional = true}
-flake8-docstrings = { version = "^1.6.0", optional = true }
 {%- if cookiecutter.use_mypy == 'y' %}
-mypy = {version = "^0.900", optional = true}
+mypy = "^1.6.1"
 {%- endif %}
-pytest  = { version = "^6.2.4", optional = true}
-pytest-cov  = { version = "^2.12.0", optional = true}
-tox  = { version = "^3.20.1", optional = true}
-virtualenv  = { version = "^20.2.2", optional = true}
-pip  = { version = "^20.3.1", optional = true}
-mkdocs  = { version = "^1.1.2", optional = true}
-mkdocs-include-markdown-plugin  = { version = "^1.0.0", optional = true}
-mkdocs-material  = { version = "^6.1.7", optional = true}
-mkdocstrings  = { version = "^0.15.2", optional = true}
-mkdocs-material-extensions  = { version = "^1.0.1", optional = true}
-twine  = { version = "^3.3.0", optional = true}
-mkdocs-autorefs = {version = "^0.2.1", optional = true}
-pre-commit = {version = "^2.12.0", optional = true}
-toml = {version = "^0.10.2", optional = true}
-bump2version = {version = "^1.0.1", optional = true}
+pytest = "^8.3.3"
+pytest-cov = "^5.0.0"
+pytest-mock = "^3.14.0"
+factory-boy = "^3.3.7"
+pytz = "^2024.1"
+bump2version = "^1.0.1"
+twine = "^4.0.2"
+coverage = "^7.6.1"
+tox = "^4.15.1"
 
-[tool.poetry.extras]
-test = [
-    "pytest",
-    "black",
-    "isort",
-    {%- if cookiecutter.use_mypy == 'y' %}
-    "mypy",
-    {%- endif %}
-    "flake8",
-    "flake8-docstrings",
-    "pytest-cov"
-    ]
-
-dev = ["tox", "pre-commit", "virtualenv", "pip", "twine", "toml", "bump2version"]
-
-doc = [
-    "mkdocs",
-    "mkdocs-include-markdown-plugin",
-    "mkdocs-material",
-    "mkdocstrings",
-    "mkdocs-material-extension",
-    "mkdocs-autorefs"
-    ]
+[tool.poetry.group.doc.dependencies]
+mkdocs = "^1.5.3"
+mkdocs-include-markdown-plugin = "^6.0.3"
+mkdocs-material = "^9.4.6"
+mkdocs-autorefs = "^0.5.0"
+mkdocstrings = {extras = ["python"], version = "^0.24.0"}
 
 {% if cookiecutter.command_line_interface|lower == 'click' -%}
 [tool.poetry.scripts]
 {{ cookiecutter.project_slug }} = '{{ cookiecutter.pkg_name }}.cli:main'
-
 {% endif -%}
+
+
+{%- if cookiecutter.use_ruff != 'y' %}
 [tool.black]
 line-length = 120
 skip-string-normalization = true
-target-version = ['py36', 'py37', 'py38']
+target-version = ['py310', 'py311']
 include = '\.pyi?$'
 exclude = '''
 /(
@@ -113,16 +99,85 @@ exclude = '''
 '''
 
 [tool.isort]
-multi_line_output = 3
+multi_line_output = 6
 include_trailing_comma = true
 force_grid_wrap = 0
-use_parentheses = true
+use_parentheses = false
 ensure_newline_before_comments = true
 line_length = 120
 skip_gitignore = true
 # you can skip files as below
 #skip_glob = docs/conf.py
-
+{%- endif %}
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core>=1.2.0"]
 build-backend = "poetry.core.masonry.api"
+
+
+{%- if cookiecutter.use_ruff == 'y' %}
+[tool.ruff]
+line-length = 120
+exclude = [
+    ".git",
+    ".mypy_cache",
+    ".ruff_cache",
+    ".tox",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "node_modules",
+    "site-packages",
+    "**/migrations/*.py",
+]
+[tool.ruff.lint]
+
+# https://docs.astral.sh/ruff/rules/
+
+select = [
+    "ANN", # flake8-annotations
+    "ARG", # flake8-unused-arguments
+    "B", # flake8-bugbear
+    "BLE", # flake8-blind-except
+    "D", # pydocstyle
+    "E", # pycodestyle
+    "ERA", # eradicate
+    "F", # Pyflakes
+    "FIX", # flake8-fixme
+    "G", # flake8-logging-format
+    "I", # isort
+    "LOG", # flake8-logging
+    "N", # pep-8 naming
+    "PL", # Pylint
+    "PYI", # flake8-pyi
+    "RET", # flake8-return
+    "RSE", # flake8-raise
+    "SIM", # flake8-simplify
+    "SLF", # flake8-self
+    "T20", # flake8-print
+    "UP", # pyupgrade
+]
+ignore = [
+    "ANN101", # Missing type annotation for self in method
+    "D100"
+]
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+[tool.ruff.lint.per-file-ignores]
+# Ignore `E402` (import violations) in all `__init__.py` files, and in `path/to/file.py`.
+"__init__.py" = ["E402", "D"]
+# Ignore `D` rules everywhere except for the `src/` directory.
+"{{cookiecutter.project_slug}}/tests/**.py" =  ["D", "ANN", "ERA", "PLR", "ARG", "SLF"]
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
+{%- endif %}
